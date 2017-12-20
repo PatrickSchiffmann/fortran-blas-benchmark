@@ -9,30 +9,28 @@ extern "C" {
 #define RANGE_MAX 65536
 #define RANGE_MULT 4
 
-static void Fortran(benchmark::State& state) {
+static void dcopy_noblas(benchmark::State& state) {
     const int N = state.range(0);
     double* vecA = (double*) malloc(sizeof(double)*N);
     double* vecB = (double*) malloc(sizeof(double)*N);
 
     for (auto _ : state)
-        bench_1_run(N, vecA, vecB);
+        dcopy_noblas(N, vecA, vecB);
 
-    free(vecB);
     free(vecA);
+    free(vecB);
 }
-BENCHMARK(Fortran)->RangeMultiplier(4)->Range(4, 65536);
+BENCHMARK(dcopy_noblas)->RangeMultiplier(RANTE_MULT)->Range(RANGE_MIN, RANGE_MAX);
 
-static void FortranBLAS(benchmark::State& state) {
+static void dcopy_blas(benchmark::State& state) {
     const int N = state.range(0);
     double* vecA = (double*) malloc(sizeof(double)*N);
     double* vecB = (double*) malloc(sizeof(double)*N);
 
     for (auto _ : state)
-        bench_2_run(N, vecA, vecB);
+        dcopy_blas(N, vecA, vecB);
 
-    free(vecB);
     free(vecA);
+    free(vecB);
 }
-BENCHMARK(FortranBLAS)->RangeMultiplier(4)->Range(4, 65536);
-
-BENCHMARK_MAIN();
+BENCHMARK(dcopy_blas)->RangeMultiplier(RANTE_MULT)->Range(RANGE_MIN, RANGE_MAX);

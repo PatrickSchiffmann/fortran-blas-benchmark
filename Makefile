@@ -6,7 +6,7 @@ LD=ifort
 
 CXXFLAGS?=-O3 -std=c++11 -pthread -lbenchmark
 FCFLAGS?= -O3 -mkl=sequential
-LDFLAGS?= -O3 -pthread -lbenchmark -nofor_main -lstdc++
+LDFLAGS?= -O3 -pthread -lbenchmark -nofor_main -lstdc++ -mkl=sequential
 
 SRC_DIR := ./src/level1
 OBJ_DIR := ./obj
@@ -20,7 +20,7 @@ FC_OBJ_FILES := $(patsubst $(SRC_DIR)/%.f90,$(OBJ_DIR)/%.f90.o,$(FC_SRC_FILES))
 all: main
 
 main: $(CPP_OBJ_FILES) $(FC_OBJ_FILES) $(OBJ_DIR)/main.o
-	$(LD) $(LDFLAGS) -o $@ $^
+	$(LD) -o $@ $^  $(LDFLAGS)
 
 $(OBJ_DIR)/main.o: ./src/main.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
