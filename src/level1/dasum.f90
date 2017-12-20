@@ -1,0 +1,22 @@
+REAL (C_DOUBLE) FUNCTION dasum_noblas(N, vecA) BIND(C)
+    USE ISO_C_BINDING
+    IMPLICIT NONE
+
+    INTEGER (C_LONG), VALUE :: N
+    REAL (C_DOUBLE), DIMENSION(N) :: vecA
+
+    dasum_noblas = SUM(ABS(vecA))
+
+END FUNCTION
+
+REAL (C_DOUBLE) FUNCTION dasum_blas(N, vecA) BIND(C)
+    USE ISO_C_BINDING
+    IMPLICIT NONE
+
+    INTEGER (C_LONG), VALUE :: N
+    REAL (C_DOUBLE), DIMENSION(N) :: vecA
+    DOUBLE PRECISION DASUM
+
+    dasum_blas = DASUM(N, vecA, 1)
+
+END FUNCTION

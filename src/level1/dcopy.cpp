@@ -20,7 +20,7 @@ static void dcopy_noblas(benchmark::State& state) {
     free(vecA);
     free(vecB);
 }
-BENCHMARK(dcopy_noblas)->RangeMultiplier(RANTE_MULT)->Range(RANGE_MIN, RANGE_MAX);
+BENCHMARK(dcopy_noblas)->RangeMultiplier(RANGE_MULT)->Range(RANGE_MIN, RANGE_MAX);
 
 static void dcopy_blas(benchmark::State& state) {
     const int N = state.range(0);
@@ -33,4 +33,4 @@ static void dcopy_blas(benchmark::State& state) {
     free(vecA);
     free(vecB);
 }
-BENCHMARK(dcopy_blas)->RangeMultiplier(RANTE_MULT)->Range(RANGE_MIN, RANGE_MAX);
+BENCHMARK(dcopy_blas)->RangeMultiplier(RANGE_MULT)->Range(RANGE_MIN, RANGE_MAX);
