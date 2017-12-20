@@ -1,0 +1,22 @@
+REAL (C_DOUBLE) FUNCTION dnrm2_noblas(n, x) BIND(C)
+    USE ISO_C_BINDING
+    IMPLICIT NONE
+
+    INTEGER (C_LONG), VALUE :: n
+    REAL (C_DOUBLE), DIMENSION(n) :: x
+
+    dnrm2_noblas = SQRT(DOT_PRODUCT(x, x))
+
+END FUNCTION
+
+REAL (C_DOUBLE) FUNCTION dnrm2_blas(n, x) BIND(C)
+    USE ISO_C_BINDING
+    IMPLICIT NONE
+
+    INTEGER (C_LONG), VALUE :: n
+    REAL (C_DOUBLE), DIMENSION(n) :: x
+    DOUBLE PRECISION dnrm2
+
+    dnrm2_blas = dnrm2(n, x, 1)
+
+END FUNCTION
