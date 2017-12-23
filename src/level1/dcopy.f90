@@ -1,21 +1,21 @@
-SUBROUTINE dcopy_noblas(N, vecA, vecB) BIND(C)
+SUBROUTINE dcopy_noblas(n, x, y) BIND(C)
     USE ISO_C_BINDING
     IMPLICIT NONE
 
-    INTEGER (C_LONG), VALUE :: N
-    REAL (C_DOUBLE), DIMENSION(N) :: vecA, vecB
+    INTEGER (C_LONG), VALUE :: n
+    REAL (C_DOUBLE), DIMENSION(n) :: x, y
 
-    vecA = vecB
+    y = x
 
 END SUBROUTINE
 
-SUBROUTINE dcopy_blas(N, vecA, vecB) BIND(C)
+SUBROUTINE dcopy_blas(n, x, y) BIND(C)
     USE ISO_C_BINDING
     IMPLICIT NONE
 
-    INTEGER (C_LONG), VALUE :: N
-    REAL (C_DOUBLE), DIMENSION(N) :: vecA, vecB
+    INTEGER (C_LONG), VALUE :: n
+    REAL (C_DOUBLE), DIMENSION(n) :: x, y
 
-    CALL DCOPY(N, vecA, 1, vecB, 1)
+    CALL DCOPY(N, x, 1, y, 1)
 
 END SUBROUTINE
