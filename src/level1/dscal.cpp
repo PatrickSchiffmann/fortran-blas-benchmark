@@ -1,13 +1,10 @@
 #include <benchmark/benchmark.h>
+#include "parameters.h"
 
 extern "C" {
     void dscal_noblas(long n, double a, double* x);
     void dscal_blas(long n, double a, double* x);
 }
-
-#define RANGE_MIN 4
-#define RANGE_MAX 65536
-#define RANGE_MULT 4
 
 static void dscal_noblas(benchmark::State& state) {
     const int n = state.range(0);

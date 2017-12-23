@@ -1,13 +1,10 @@
 #include <benchmark/benchmark.h>
+#include "parameters.h"
 
 extern "C" {
     double dasum_noblas(long N, double* vecA);
     double dasum_blas(long N, double* vecA);
 }
-
-#define RANGE_MIN 4
-#define RANGE_MAX 65536
-#define RANGE_MULT 4
 
 static void dasum_noblas(benchmark::State& state) {
     const int N = state.range(0);

@@ -1,13 +1,10 @@
 #include <benchmark/benchmark.h>
+#include "parameters.h"
 
 extern "C" {
     double dnrm2_noblas(long n, double* x);
     double dnrm2_blas(long n, double* x);
 }
-
-#define RANGE_MIN 4
-#define RANGE_MAX 65536
-#define RANGE_MULT 4
 
 static void dnrm2_noblas(benchmark::State& state) {
     const int n = state.range(0);

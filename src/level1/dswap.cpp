@@ -1,13 +1,10 @@
 #include <benchmark/benchmark.h>
+#include "parameters.h"
 
 extern "C" {
     void dswap_noblas(long n, double* x, double* y);
     void dswap_blas(long n, double* x, double* y);
 }
-
-#define RANGE_MIN 4
-#define RANGE_MAX 65536
-#define RANGE_MULT 4
 
 static void dswap_noblas(benchmark::State& state) {
     const int n = state.range(0);
