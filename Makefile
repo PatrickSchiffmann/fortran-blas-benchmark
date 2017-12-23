@@ -1,5 +1,7 @@
 .PHONY: run all
 
+RESULT_NAME = $(shell hostname)
+
 CXX=icpc
 FC=ifort
 LD=ifort
@@ -33,3 +35,7 @@ $(OBJ_DIR)/%.f90.o: $(SRC_DIR)/%.f90
 
 run: main
 	./main
+
+results: main
+	./main --benchmark_format=csv > results/$(RESULT_NAME).csv
+
