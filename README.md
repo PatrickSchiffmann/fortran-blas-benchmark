@@ -7,7 +7,7 @@ Collection of Google Benchmark based benchmarks to compare a BLAS library (e.g. 
     REAL (C_DOUBLE), VALUE :: a
     REAL (C_DOUBLE), DIMENSION(n) :: x, y
 
-	! Everyone can read this.
+    ! Everyone can read this.
     y = a * x + y
      
     ! Is this faster? Enough, to put up with making code hard to read?
